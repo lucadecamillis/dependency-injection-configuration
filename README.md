@@ -47,7 +47,7 @@ Per registration the following parameters can be set
 
 - `ServiceType`: type to register
 - `ImplementationType`: type that implements `ServiceType`
-- `Lifetime`: lifetime of the registration. Values are taken from enum [Lifetime](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime)
+- `Lifetime`: lifetime of the registration. Values are taken from enum [ServiceLifetime](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime). If not provided it defaults to `ServiceLifetime.Transient`
 
 The JSON location of services definition can be changed in options:
 
