@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LdC.DependencyInjection.Configuration", "src\LdC.DependencyInjection.Configuration.csproj", "{95D3C23E-AA83-4AE4-BFCC-CE5168A4EE5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LdC.DependencyInjection.Configuration.Sample", "sample\LdC.DependencyInjection.Configuration.Sample.csproj", "{35C16395-57C7-42A7-A328-709B37E396A3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{95D3C23E-AA83-4AE4-BFCC-CE5168A4EE5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95D3C23E-AA83-4AE4-BFCC-CE5168A4EE5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95D3C23E-AA83-4AE4-BFCC-CE5168A4EE5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95D3C23E-AA83-4AE4-BFCC-CE5168A4EE5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35C16395-57C7-42A7-A328-709B37E396A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35C16395-57C7-42A7-A328-709B37E396A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35C16395-57C7-42A7-A328-709B37E396A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35C16395-57C7-42A7-A328-709B37E396A3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
