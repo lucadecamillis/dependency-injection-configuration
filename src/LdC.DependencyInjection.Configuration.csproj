@@ -1,7 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <Description>JSON configuration for ServiceCollection</Description>
+    <AssemblyTitle>LdC.DependencyInjection.Configuration</AssemblyTitle>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Luca De Camillis</Authors>
+    <PackageId>DependencyInjection.Configuration</PackageId>
+    <PackageDescription>JSON configuration for ServiceCollection</PackageDescription>
+    <PackageProjectUrl>https://github.com/lucadecamillis/dependency-injection-configuration</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/lucadecamillis/dependency-injection-configuration</RepositoryUrl>
+    <Version>0.1</Version>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <DebugSymbols>true</DebugSymbols>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
