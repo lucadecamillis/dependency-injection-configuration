@@ -1,4 +1,5 @@
-# Dependency Injection Configuration
+# Dependency Injection Configuration  ![Build status](https://github.com/lucadecamillis/dependency-injection-configuration/actions/workflows/ci.yml/badge.svg?branch=master) [![NuGet](https://img.shields.io/nuget/v/DependencyInjection.Configuration.svg)](https://www.nuget.org/packages/DependencyInjection.Configuration)
+
 Provide support for configuring [ServiceCollection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection) via [IConfiguration](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Json)
 
 ### Usage
@@ -42,6 +43,12 @@ Services definition is read from `appsettings.json`:
 }
 ```
 
+Per registration the following parameters can be set
+
+- `ServiceType`: type to register
+- `ImplementationType`: type that implements `ServiceType`
+- `Lifetime`: lifetime of the registration. Values are taken from enum [Lifetime](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime)
+
 The JSON location of services definition can be changed in options:
 
 ```csharp
@@ -52,10 +59,3 @@ var options = new DependencyInjectionConfigurationOptions
 
 services.FromConfiguration(configuration, options);
 ```
-
-
-Per registration the following parameters can be set
-
-- `ServiceType`: type to register
-- `ImplementationType`: type that implements `ServiceType`
-- `Lifetime`: lifetime of the registration. Values are taken from enum [Lifetime](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime)
