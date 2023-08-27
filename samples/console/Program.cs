@@ -22,3 +22,7 @@ Console.WriteLine("Service created");
 var context = serviceProvider.GetRequiredService<Context>();
 
 Console.WriteLine("Context created");
+
+var generics = serviceProvider.GetRequiredService<IGenericService<string>>();
+
+Console.WriteLine("Generics created");

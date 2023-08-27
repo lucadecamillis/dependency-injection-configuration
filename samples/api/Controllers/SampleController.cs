@@ -5,7 +5,7 @@ using Samples.Lib.Interfaces;
 namespace Samples.Api.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("[controller]/[action]")]
 public class SampleController : ControllerBase
 {
     readonly IService service;
@@ -19,9 +19,15 @@ public class SampleController : ControllerBase
         this.context = context;
     }
 
-    [HttpGet(Name = "GetSample")]
-    public string Get()
+    [HttpGet(Name = "hello")]
+    public string Hello()
     {
         return "Hello World";
+    }
+
+    [HttpGet(Name = "generics")]
+    public string Generics([FromServices] IGenericService<string> genericService)
+    {
+        return "Hello Generics";
     }
 }

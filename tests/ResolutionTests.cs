@@ -21,6 +21,18 @@ public class ResolutionTests
         Assert.NotNull(service);
     }
 
+    [Fact]
+    public void Resolution_CanResolveGenerics()
+    {
+        var serviceDef = CreateSchemaService(typeof(IGenericService<>), typeof(GenericService<>));
+
+        var serviceProvider = LoadServiceProvider(serviceDef);
+
+        var service = serviceProvider.GetRequiredService<IGenericService<string>>();
+
+        Assert.NotNull(service);
+    }
+
     private static IServiceProvider LoadServiceProvider(params Schema.Service[] services)
     {
         var servicesObj = new Services { Collection = services.ToArray() };
