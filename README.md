@@ -30,13 +30,17 @@ Services definition is read from `appsettings.json`:
   "Services": {
     "Collection": [
       {
-        "ServiceType": "Sample.Interfaces.IRepository, Sample",
-        "ImplementationType": "Sample.Impl.Repository, Sample",
+        "ServiceType": "Samples.Lib.Interfaces.IRepository, Samples.Lib",
+        "ImplementationType": "Samples.Lib.Impl.Repository, Samples.Lib",
         "Lifetime": "Scoped"
       },
       {
-        "ServiceType": "Sample.Interfaces.IService, Sample",
-        "ImplementationType": "Sample.Impl.Service, Sample"
+        "ServiceType": "Samples.Lib.Interfaces.IService, Samples.Lib",
+        "ImplementationType": "Samples.Lib.Impl.Service, Samples.Lib"
+      },
+      {
+        "ServiceType": "Samples.Lib.Impl.Context, Samples.Lib",
+        "Lifetime": "Singleton"
       }
     ]
   }

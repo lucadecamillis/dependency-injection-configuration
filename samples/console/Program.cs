@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Samples.Lib.Impl;
+using Samples.Lib.Interfaces;
 using LdC.DependencyInjection.Configuration;
-using LdC.DependencyInjection.Configuration.Sample.Interfaces;
-using LdC.DependencyInjection.Configuration.Sample.Impl;
 
 var configuration = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())

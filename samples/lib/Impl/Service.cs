@@ -1,6 +1,6 @@
-using LdC.DependencyInjection.Configuration.Sample.Interfaces;
+using Samples.Lib.Interfaces;
 
-namespace LdC.DependencyInjection.Configuration.Sample.Impl;
+namespace Samples.Lib.Impl;
 
 public class Service : IService
 {
