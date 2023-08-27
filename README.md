@@ -45,9 +45,9 @@ Services definition is read from `appsettings.json`:
 
 Per registration the following parameters can be set
 
-- `ServiceType`: type to register
-- `ImplementationType`: type that implements `ServiceType`
-- `Lifetime`: lifetime of the registration. Values are taken from enum [ServiceLifetime](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime). If not provided it defaults to `ServiceLifetime.Transient`
+- `ServiceType`: type to register (Required)
+- `ImplementationType`: type that implements `ServiceType` (Optional)
+- `Lifetime`: lifetime of the registration (Optional). Values are taken from enum [ServiceLifetime](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime). If not provided it defaults to `ServiceLifetime.Transient`
 
 The JSON location of services definition can be changed in options:
 

@@ -29,7 +29,8 @@ namespace LdC.DependencyInjection.Configuration.Loader
         private static void LoadService(IServiceCollection serviceCollection, Service service)
         {
             Type serviceType = TryParseType(service.ServiceType);
-            Type implType = TryParseType(service.ImplementationType);
+            // In case the implementation type is not provided use the service type
+            Type implType = TryParseType(service.ImplementationType) ?? serviceType;
 
             var descriptor = new ServiceDescriptor(
                 serviceType,
