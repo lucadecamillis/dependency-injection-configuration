@@ -5,6 +5,9 @@ namespace LdC.DependencyInjection.Configuration.Schema
 {
     internal class Services
     {
+        /// <summary>
+        /// Collection of services to be registered
+        /// </summary>
         public IEnumerable<Service> Collection { get; set; }
 
         public Services()

@@ -7,6 +7,12 @@ namespace LdC.DependencyInjection.Configuration
 {
     public static class DependencyInjectionConfigurationExtensions
     {
+        /// <summary>
+        /// Load service collection from the configuration
+        /// </summary>
+        /// <param name="serviceCollection"></param>
+        /// <param name="configuration"></param>
+        /// <param name="options"></param>
         public static void FromConfiguration(
             this IServiceCollection serviceCollection,
             IConfiguration configuration,
