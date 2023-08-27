@@ -6,10 +6,11 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Luca De Camillis</Authors>
     <PackageId>DependencyInjection.Configuration</PackageId>
+    <PackageTags>json;appsettings;web-api;asp-net-core;asp-net;web-api-core;service-collection;microsoft-configuration;microsoft-dependency-injection;appsettings-json</PackageTags>
     <PackageDescription>Provide support for configuring IServiceCollection via IConfiguration (appsettings.json)</PackageDescription>
     <PackageProjectUrl>https://github.com/lucadecamillis/dependency-injection-configuration</PackageProjectUrl>
     <RepositoryUrl>https://github.com/lucadecamillis/dependency-injection-configuration</RepositoryUrl>
-    <Version>0.1</Version>
+    <Version>0.2</Version>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <DebugSymbols>true</DebugSymbols>
     <IncludeSymbols>true</IncludeSymbols>
