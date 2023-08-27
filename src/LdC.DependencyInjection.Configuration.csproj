@@ -6,7 +6,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Luca De Camillis</Authors>
     <PackageId>DependencyInjection.Configuration</PackageId>
-    <PackageDescription>JSON configuration for ServiceCollection</PackageDescription>
+    <PackageDescription>Provide support for configuring IServiceCollection via IConfiguration (appsettings.json)</PackageDescription>
     <PackageProjectUrl>https://github.com/lucadecamillis/dependency-injection-configuration</PackageProjectUrl>
     <RepositoryUrl>https://github.com/lucadecamillis/dependency-injection-configuration</RepositoryUrl>
     <Version>0.1</Version>
