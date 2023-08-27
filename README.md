@@ -1,8 +1,8 @@
 # Dependency Injection Configuration  ![Build status](https://github.com/lucadecamillis/dependency-injection-configuration/actions/workflows/ci.yml/badge.svg?branch=master) [![NuGet](https://img.shields.io/nuget/v/DependencyInjection.Configuration.svg)](https://www.nuget.org/packages/DependencyInjection.Configuration)
 
-Provide support for configuring [ServiceCollection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection) via [IConfiguration](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Json)
+Provide support for configuring [ServiceCollection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection) in [ASP.NET WebAPI](https://github.com/dotnet/aspnetcore) or via [IConfiguration](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Json)
 
-### Usage
+## Installation
 
 Install the package via nuget:
 
@@ -10,7 +10,20 @@ Install the package via nuget:
 dotnet add package DependencyInjection.Configuration
 ```
 
-Configuration can be read using the extension `FromConfiguration()`:
+## Web Api
+
+Configuration is read using the extension `FromConfiguration()`:
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.FromConfiguration(builder.Configuration);
+```
+
+## `IConfiguration`
+
+For console or WPF applications configuration can still be read using the extension `FromConfiguration()`:
 
 ```csharp
 var configuration = new ConfigurationBuilder()
@@ -22,6 +35,8 @@ IServiceCollection services = new ServiceCollection();
 
 services.FromConfiguration(configuration);
 ```
+
+## Definition
 
 Services definition is read from `appsettings.json`:
 
@@ -63,3 +78,5 @@ var options = new DependencyInjectionConfigurationOptions
 
 services.FromConfiguration(configuration, options);
 ```
+
+For console or WebApi examples check out the samples directory.
