@@ -22,22 +22,58 @@ namespace LdC.DependencyInjection.Configuration.Loader
         {
             foreach (var service in services.Collection)
             {
-                LoadService(serviceCollection, service);
+                serviceCollection.Add(LoadService(service));
             }
         }
 
-        private static void LoadService(IServiceCollection serviceCollection, Service service)
+        private static ServiceDescriptor LoadService(Service service)
         {
+            var lifetime = service.Lifetime.GetValueOrDefault(ServiceLifetime.Transient);
+
             Type serviceType = TryParseType(service.ServiceType);
+            if (serviceType == null)
+            {
+                throw new InvalidOperationException($"{nameof(Service.ServiceType)} is required");
+            }
+
+            if (service.Factory != null)
+            {
+                if (service.ImplementationType != null)
+                {
+                    throw new InvalidOperationException($"{nameof(Service.ImplementationType)} cannot be set when {nameof(Service.Factory)} is set");
+                }
+
+                return LoadServiceFromFactory(serviceType, service.Factory, lifetime);
+            }
+            else
+            {
+                return LoadServiceFromImplementation(serviceType, service.ImplementationType, lifetime);
+            }
+        }
+
+        private static ServiceDescriptor LoadServiceFromFactory(Type serviceType, Factory factory, ServiceLifetime lifetime)
+        {
+            var factoryDelegate = ParseFactoryDelegate(serviceType, factory);
+
+            var descriptor = new ServiceDescriptor(
+                serviceType,
+                factoryDelegate,
+                lifetime);
+
+            return descriptor;
+        }
+
+        private static ServiceDescriptor LoadServiceFromImplementation(Type serviceType, string implTypeString, ServiceLifetime lifetime)
+        {
             // In case the implementation type is not provided use the service type
-            Type implType = TryParseType(service.ImplementationType) ?? serviceType;
+            Type implType = TryParseType(implTypeString) ?? serviceType;
 
             var descriptor = new ServiceDescriptor(
                 serviceType,
                 implType,
-                service.Lifetime.GetValueOrDefault(ServiceLifetime.Transient));
+                lifetime);
 
-            serviceCollection.Add(descriptor);
+            return descriptor;
         }
 
         private static Type TryParseType(string typeString)
@@ -48,6 +84,30 @@ namespace LdC.DependencyInjection.Configuration.Loader
             }
 
             return Type.GetType(typeString, throwOnError: true, ignoreCase: true);
+        }
+
+        private static Func<IServiceProvider, object> ParseFactoryDelegate(Type serviceType, Factory factory)
+        {
+            if (string.IsNullOrWhiteSpace(factory.Method))
+            {
+                throw new InvalidOperationException($"Invalid factory for service {serviceType.Name}: no method name provided");
+            }
+
+            Type factoryType = TryParseType(factory.Type);
+            if (factoryType == null)
+            {
+                throw new InvalidOperationException($"Invalid factory for service {serviceType.Name}: no type provided");
+            }
+
+            var method = factoryType.GetMethod(factory.Method);
+            if (!method.IsStatic)
+            {
+                throw new InvalidOperationException($"Invalid factory for service {serviceType.Name}: method {factory.Method} from type {factoryType.Name} is not static");
+            }
+            
+            var @delegate = method.CreateDelegate(typeof(Func<IServiceProvider, object>)) as Func<IServiceProvider, object>;
+
+            return @delegate;
         }
     }
 }

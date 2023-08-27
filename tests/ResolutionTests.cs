@@ -1,5 +1,3 @@
-using LdC.DependencyInjection.Configuration.Loader;
-using LdC.DependencyInjection.Configuration.Schema;
 using Microsoft.Extensions.DependencyInjection;
 using Samples.Lib.Impl;
 using Samples.Lib.Interfaces;
@@ -11,10 +9,10 @@ public class ResolutionTests
     [Fact]
     public void Resolution_CanResolveInterfaces()
     {
-        var repoDef = CreateSchemaService(typeof(IRepository), typeof(Repository));
-        var serviceDef = CreateSchemaService(typeof(IService), typeof(Samples.Lib.Impl.Service));
+        var repoDef = TestUtilities.CreateSchemaService(typeof(IRepository), typeof(Repository));
+        var serviceDef = TestUtilities.CreateSchemaService(typeof(IService), typeof(Service));
 
-        var serviceProvider = LoadServiceProvider(repoDef, serviceDef);
+        var serviceProvider = TestUtilities.LoadServiceProvider(repoDef, serviceDef);
 
         var service = serviceProvider.GetRequiredService<IService>();
 
@@ -24,33 +22,12 @@ public class ResolutionTests
     [Fact]
     public void Resolution_CanResolveGenerics()
     {
-        var serviceDef = CreateSchemaService(typeof(IGenericService<>), typeof(GenericService<>));
+        var serviceDef = TestUtilities.CreateSchemaService(typeof(IGenericService<>), typeof(GenericService<>));
 
-        var serviceProvider = LoadServiceProvider(serviceDef);
+        var serviceProvider = TestUtilities.LoadServiceProvider(serviceDef);
 
         var service = serviceProvider.GetRequiredService<IGenericService<string>>();
 
         Assert.NotNull(service);
-    }
-
-    private static IServiceProvider LoadServiceProvider(params Schema.Service[] services)
-    {
-        var servicesObj = new Services { Collection = services.ToArray() };
-
-        return LoadServiceProvider(servicesObj);
-    }
-
-    private static IServiceProvider LoadServiceProvider(Services services)
-    {
-        var serviceCollection = new ServiceCollection();
-
-        ServiceCollectionLoader.LoadServices(serviceCollection, services, DependencyInjectionConfigurationOptions.Default);
-
-        return serviceCollection.BuildServiceProvider();
-    }
-
-    private static Schema.Service CreateSchemaService(Type serviceType, Type implType)
-    {
-        return new Schema.Service { ServiceType = serviceType.AssemblyQualifiedName, ImplementationType = implType.AssemblyQualifiedName };
     }
 }

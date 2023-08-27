@@ -20,7 +20,7 @@ public class SampleController : ControllerBase
     }
 
     [HttpGet(Name = "hello")]
-    public string Hello()
+    public string Hello([FromServices] IComplexService complexService)
     {
         return "Hello World";
     }

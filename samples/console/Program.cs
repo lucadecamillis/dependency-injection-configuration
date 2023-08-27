@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Samples.Lib.Impl;
 using Samples.Lib.Interfaces;
 using LdC.DependencyInjection.Configuration;
+using Samples.Lib.Factories;
 
 var configuration = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
@@ -10,6 +11,8 @@ var configuration = new ConfigurationBuilder()
     .Build();
 
 IServiceCollection services = new ServiceCollection();
+
+services.AddTransient<IComplexService>(ComplexServiceFactory.Create);
 
 services.FromConfiguration(configuration);
 
@@ -26,3 +29,7 @@ Console.WriteLine("Context created");
 var generics = serviceProvider.GetRequiredService<IGenericService<string>>();
 
 Console.WriteLine("Generics created");
+
+var complex = serviceProvider.GetRequiredService<IComplexService>();
+
+Console.WriteLine("Complex created");

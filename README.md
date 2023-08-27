@@ -60,6 +60,14 @@ Services definition is read from `appsettings.json`:
       {
         "ServiceType": "Samples.Lib.Interfaces.IGenericService`1, Samples.Lib",
         "ImplementationType": "Samples.Lib.Impl.GenericService`1, Samples.Lib"
+      },
+      {
+        "ServiceType": "Samples.Lib.Interfaces.IComplexService, Samples.Lib",
+        "Factory": {
+          "Type": "Samples.Lib.Factories.ComplexServiceFactory, Samples.Lib",
+          "Method": "Create"
+        },
+        "Lifetime": "Transient"
       }
     ]
   }
@@ -68,9 +76,12 @@ Services definition is read from `appsettings.json`:
 
 Per registration the following parameters can be set
 
-- `ServiceType`: Assembly Qualified Name of the type to register (Required)
-- `ImplementationType`: Assembly Qualified Name of the type that implements `ServiceType` (Optional)
-- `Lifetime`: lifetime of the registration (Optional). Values are taken from enum [ServiceLifetime](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime). If not provided it defaults to `ServiceLifetime.Transient`
+* `ServiceType`: Assembly Qualified Name of the type to register (Required)
+* `ImplementationType`: Assembly Qualified Name of the type that implements `ServiceType` (Optional)
+* `Lifetime`: lifetime of the registration (Optional). Values are taken from enum [ServiceLifetime](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime). If not provided it defaults to `ServiceLifetime.Transient`
+* `Factory`: create the service via factory method.
+  - `Type`: Type where the factory method is defined
+  - `Method`: Factory method (has to be defined as static)
 
 The JSON location of services definition can be changed in options:
 
